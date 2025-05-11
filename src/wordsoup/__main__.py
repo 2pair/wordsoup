@@ -63,7 +63,7 @@ if __name__ == "__main__":
                 question=f"Enter letter group {i + 1}.",
                 validator=lambda group: group.isalpha() and len(group) == len(set(group))
             )
-            letter_groups.append(set(letter_group))
+            letter_groups.append(set(letter_group.lower()))
 
         dictionary = DictionaryTrie(dictionary_file, word_length)
         word_soup = WordSoup(dictionary, letter_groups)
@@ -71,16 +71,15 @@ if __name__ == "__main__":
 
         print(f"{len(words)} valid words:")
         index = 0
-        if words:
-            for word in words:
-                if index < WORDS_PER_LINE:
-                    end = "  "
-                    index += 1
-                else:
-                    index = 0
-                    end = "\n"
-                print(word, end=end)
-        else:
+        for word in words:
+            if index < WORDS_PER_LINE:
+                end = "  "
+                index += 1
+            else:
+                index = 0
+                end = "\n"
+            print(word, end=end)
+        if not words:
             print("None!?")
     except KeyboardInterrupt:
         print("Ending the day early, Baron Reddington?")
