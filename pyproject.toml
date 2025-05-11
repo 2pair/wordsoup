@@ -1,0 +1,6 @@
+[project]
+name = "wordsoup"
+version = "0.0.1"
+description = "Finds the words in the soup"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
