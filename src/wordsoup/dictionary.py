@@ -62,7 +62,11 @@ class DictionaryTrie:
         self.create_trie()
 
     def _add_to_node(self, node: Node, sequence: Sequence):
-        """Adds the letters in the sequence to the data structure."""
+        """Adds the letters in the sequence to the data structure.
+        
+        Args:
+            node: The parent node for the sequence.
+            sequence: the sequence of letters from which nodes will be created."""
         letters = deque(sequence)
         front = letters.popleft()
         next_node = node.setdefault(front, Node(front, previous=node))
@@ -71,7 +75,6 @@ class DictionaryTrie:
 
     def create_trie(self):
         """Create a trie from the words in the file."""
-        self.words_trie = dict()
         with self.word_list_file.open(mode="r") as word_list:
             for word in word_list:
                 word = word.strip().lower()
